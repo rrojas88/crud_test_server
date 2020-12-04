@@ -31,6 +31,11 @@ const Categoria = sequelize.define('categoria', {
     underscored: true,// Permitir "_" en campos/columnas FOREIGN KEY ???
 })
 
+Categoria.addHook('beforeCreate', (categ, options) => {
+	console.log('Antes de Guardar')
+	console.log( categ.f_creacion )
+});
+
 const init = async () => {
 	await sequelize.sync();
 	console.log('TB Categoria ready ...!');
